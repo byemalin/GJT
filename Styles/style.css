@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .flexbox {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(34, 29, 29);
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #canvasdiv {
+    border: 4mm ridge rgb(47, 47, 42);
+    /* cursor: url(../Assets/img/pointer.png), auto; */
+    cursor: none;
+  }
+  
+  #toggle {
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+  }
