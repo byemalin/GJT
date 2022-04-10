@@ -127,8 +127,8 @@ function waitForHost(){
 }
 
 function gameOn() {
-    x = random(0, width);
-    y = random(0, height);
+    x = random(40, width - 40);
+    y = random(40, height - 40);
   
   //frame rate is based on how many points you have basically, so it gets harder as u progress
   frameRate(speed);
@@ -137,8 +137,8 @@ function gameOn() {
   //keep text black
   fill(0);
   textAlign(LEFT);
-  text("Player 1: " + shared.score1, 20, 20);
-  text("Player 2: " + shared.score2, width-80, 20);
+  text("Player 1: " + shared.score1, 20, 40);
+  text("Player 2: " + shared.score2, width-200, 40);
 
   //Random colour selector:
     //Would replace this with something for the sprites
