@@ -43,6 +43,7 @@ function draw() {
       break;
     case 3:
       gameOver(); 
+      break;
     default:
       startScreen();
       break;
@@ -82,7 +83,8 @@ function mousePressed() {
         }
       }
     }
-  } else if (screen == 3) {
+  } 
+  else if (screen == 3) {
     screen = 0;
   }
 }
@@ -100,16 +102,16 @@ function startScreen() {
   //   width / 2,
   //   height / 2 + 20
   // );
-  reset();
+ reset();
 }
 
 function waitForHost(){
   textSize(40);
   fill(255);
   if(partyIsHost()){
-    text("You are the Host", 250, 250);
-    text("Press ENTER to begin", 250, 300);
-    text("when everyone is ready", 250, 350);
+    text("You are the Host", 300, 250);
+    text("Press ENTER to begin", 300, 300);
+    text("when everyone is ready", 300, 350);
     //enter
     if(keyCode == 13){
       shared.hostStart = true;
@@ -160,10 +162,10 @@ function gameOn() {
 function gameOver() {
   background(150);
   textAlign(CENTER);
-  text("GAME OVER", width / 2, height / 2);
-  text("Player 1: " + shared.score1, width / 2, height / 2 + 20);
-  text("Player 2: " + shared.score2, width / 2, height / 2 + 40);
-  text("click to play again", width / 2, height / 2 + 60);
+  text("GAME OVER", width / 2 - 20, height / 2 - 120);
+  text("Player 1: " + shared.score1, width / 2, height / 2 - 60);
+  text("Player 2: " + shared.score2, width / 2, height / 2 - 20);
+  text("click to play again", width / 2, height / 2 + 100);
 }
 
 function reset() {
