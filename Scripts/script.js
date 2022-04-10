@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  var mainCanvas = createCanvas(800, 800);
+  var mainCanvas = createCanvas(600, 600);
   mainCanvas.parent("canvasdiv");
   //Toggle Server Info
   partyToggleInfo(false);
@@ -34,30 +34,18 @@ function setup() {
 
 function draw() {
   background(96, 157, 255);
-  // switch(screen){
-  //   case 1:
-  //     waitForHost();
-  //     break;
-  //   case 2:
-  //     gameOn();
-  //     break;
-  //   case 3:
-  //     gameOver(); 
-  //   default:
-  //     startScreen();
-  //     break;
-  // }
-  // // Display the contents of the current screen
-  if (screen == 0) {
-    startScreen();
-  } else if (screen == 1) {
-    waitForHost();
-    // if the screen variable was changed to 2, show the game over screen
-  } else if (screen == 2) {
-    gameOn();
-  }
-  else if(screen == 3){
-    gameOver();
+  switch(screen){
+    case 1:
+      waitForHost();
+      break;
+    case 2:
+      gameOn();
+      break;
+    case 3:
+      gameOver(); 
+    default:
+      startScreen();
+      break;
   }
 }
 
@@ -127,13 +115,13 @@ function waitForHost(){
       shared.hostStart = true;
       shared.score1 = 0;
       shared.score2 = 0;
-      scene = 2;
+      screen = 2;
     }
   }
   else if(!partyIsHost()){
     text("Waiting for the host", 250, 250);
     if(shared.hostStart == true){
-      scene = 2;
+      screen = 2;
     }
   }
 }
