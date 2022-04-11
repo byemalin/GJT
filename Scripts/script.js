@@ -10,6 +10,8 @@ let shared;
 let mallet;
 let bomb;
 let mole;
+let whack;
+let moleFont;
 let rectDrawn = false;
 
 function preload() {
@@ -19,12 +21,15 @@ function preload() {
   mallet = loadImage('Assets/mallet.svg');
   bomb = loadImage('Assets/bomb.svg');
   mole = loadImage('Assets/mole.svg');
+  whack = loadSound("Assets/whack01.mp3");
+  moleFont = loadFont("Assets/HelloWhackAMole.ttf");
 }
 
 function setup() {
   imageMode(CENTER);
   var mainCanvas = createCanvas(600, 600);
   mainCanvas.parent("canvasdiv");
+  textFont(moleFont);
   //Toggle Server Info
   partyToggleInfo(false);
   toggle = document.getElementById('toggle');
@@ -56,6 +61,7 @@ function draw() {
       break;
     default:
       startScreen();
+      // drawMoles();
       break;
   }
 }
@@ -76,7 +82,7 @@ function mousePressed() {
       mouseY < y + 50
     ) {
 // the size parameters in this^ if statement may need to change based on the new sprites
-
+      whack.play();
       if (colorPicker == 0) {
         // red click = game over
         screen = 3;
@@ -109,18 +115,25 @@ function mousePressed() {
 
 function startScreen() {
   textSize(30);
-
   fill(255);
   textAlign(CENTER);
   text("GJT Wac-A-Mole",width/2,height/2 + 20);
   text("Click to begin", width/2, height/2 + 60);
-  // text("WELCOME SCREEN HERE", width / 2, height / 2);
-  // text(
-  //   "Feel free to change the scene code method of course!",
-  //   width / 2,
-  //   height / 2 + 20
-  // );
+  // image(mole,100,100,40,40);
+  // image(mole,200,150,40,40);
+  // image(mole,50,200,40,40);
+ 
  reset();
+}
+
+function drawMoles(){
+  // frameRate(0.00005);
+  for(let i = 0; i < 10; i++){
+    x = 50;
+    y = 100;
+    r = random(50,250);
+    image(mole, random(x * i + r),random(y * i + r),40,40);
+  }
 }
 
 function waitForHost(){
