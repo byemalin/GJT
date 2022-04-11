@@ -12,6 +12,7 @@ let bomb;
 let mole;
 let whack;
 let moleFont;
+let confetti;
 let rectDrawn = false;
 
 function preload() {
@@ -23,6 +24,7 @@ function preload() {
   mole = loadImage('Assets/mole.svg');
   whack = loadSound("Assets/whack01.mp3");
   moleFont = loadFont("Assets/HelloWhackAMole.ttf");
+  confetti = loadImage("Assets/confetti.gif");
 }
 
 function setup() {
@@ -206,6 +208,7 @@ function gameOver() {
   text("Player 1: " + shared.score1, width / 2, height / 2 - 60);
   text("Player 2: " + shared.score2, width / 2, height / 2 - 20);
   text("click to play again", width / 2, height / 2 + 100);
+  image(confetti,300,300,600,600);
 }
 
 function reset() {
