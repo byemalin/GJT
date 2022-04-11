@@ -7,12 +7,22 @@ var colorPicker;
 
 let shared;
 
+let mallet;
+let bomb;
+let mole;
+let rectDrawn = false;
+
 function preload() {
   partyConnect("wss://deepstream-server-1.herokuapp.com", "Grid-Click", "main");
   shared = partyLoadShared("globals");
+
+  mallet = loadImage('Assets/mallet.svg');
+  bomb = loadImage('Assets/bomb.svg');
+  mole = loadImage('Assets/mole.svg');
 }
 
 function setup() {
+  imageMode(CENTER);
   var mainCanvas = createCanvas(600, 600);
   mainCanvas.parent("canvasdiv");
   //Toggle Server Info
@@ -60,9 +70,9 @@ function mousePressed() {
   
   else if (screen == 2) {
     if (
-      mouseX > x &&
+      mouseX > x - 50 &&
       mouseX < x + 50 &&
-      mouseY > y &&
+      mouseY > y - 50 &&
       mouseY < y + 50
     ) {
 // the size parameters in this^ if statement may need to change based on the new sprites
@@ -129,12 +139,15 @@ function waitForHost(){
 }
 
 function gameOn() {
+  background(220);
+  frameRate(60); // we should not change the frame rate, it affects everything p5 draw
+
+  // generate a new (x, y), and a new color each 1 second
+  if (frameCount % 60 === 0) {
     x = random(40, width - 40);
     y = random(40, height - 40);
-  
-  //frame rate is based on how many points you have basically, so it gets harder as u progress
-  frameRate(speed);
-  background(220);
+    colorPicker = floor(random(3));
+  }
 
   //keep text black
   fill(0);
@@ -145,7 +158,6 @@ function gameOn() {
   //Random colour selector:
     //Would replace this with something for the sprites
   
-  colorPicker = floor(random(3));
   //conditional changes the fill based on the colorPicker variable
   if (colorPicker == 0) {
     fill(255, 0, 0);
@@ -154,9 +166,16 @@ function gameOn() {
   } else {
     fill(0, 0, 255);
   }
-  //shape is drawn
-  rect(x, y, 40, 40);
-
+  
+  if (colorPicker === 0) {
+    // draw the bomb
+    image(bomb, x, y, 40, 40);
+  } else {
+    // draw the mole
+    image(mole, x, y, 32, 40);
+  }
+  // draw mallet with mouse position
+  image(mallet, mouseX, mouseY, 40, 40);
 }
 
 function gameOver() {
