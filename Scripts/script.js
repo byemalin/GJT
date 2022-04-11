@@ -85,11 +85,19 @@ function mousePressed() {
         speed += 0.05;
         console.log(speed);
         if (partyIsHost()) {
-          //player 1 adds their score
-          shared.score1 += 1;
+          //player 1 adds their score until 20
+          if (shared.score1 >= 20) {
+            screen = 3;
+          } else {
+            shared.score1 += 1;
+          }
         } else if (!partyIsHost()) {
           //player 2 adds their score
-          shared.score2 += 1;
+          if (shared.score2 >= 20) {
+            screen = 3;
+          } else {
+            shared.score2 += 1;
+          }
         }
       }
     }
